@@ -13,7 +13,7 @@
 
 ## Technologien
 
--Python
+- Python
 
 ## Geplante Erweiterung
 
@@ -24,7 +24,7 @@
 - Spieler Stärken/Schwächen evaluierne
 
 
-##Versionsverlauf
+## Versionsverlauf
 
 ## 0.1
 
