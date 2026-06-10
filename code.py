@@ -1,3 +1,5 @@
+# All perdefined lists in the code
+
 squad = [
     {
         "name": "Erling Haaland",
@@ -72,7 +74,7 @@ squad = [
 ]
 
 
-
+# All definitions in the Code
 
 def print_player_card(player):
 
@@ -96,22 +98,11 @@ def goals_per_match(player):
 
 
 def get_contribution(player):
-    """
-    Returns total goal contributions (goals + assists).
-
-    player: a dictionary
-    """
     return player["goals"] + player["assists"]
 
 
 def rate_player(player):
-    """
-    Returns a label based on the player's rating.
-    This uses if / elif / else — Python checks each condition top to bottom
-    and runs the FIRST one that is True.
 
-    player: a dictionary
-    """
     rating = player["rating"]            
 
     if rating >= 9.0:
@@ -171,12 +162,7 @@ def squad_stats(squad):
 
 
 def add_player(squad, name, club, position, age, goals, assists, matches, rating):
-    """
-    Adds a new player to the squad list.
 
-    squad: the existing list — we add to it
-    All other parameters: the new player's details
-    """
     new_player = {
         "name": name,
         "club": club,
@@ -195,7 +181,6 @@ def add_player(squad, name, club, position, age, goals, assists, matches, rating
 
     
 def main_menu():
-    """A simple text based menu to review the squad data."""
     while True:
         print("\nMain Menu:")
         print("1. view full squad")
@@ -219,14 +204,31 @@ def main_menu():
             name = input(f"Name:")
             club = input(f"Club:")
             position = input(f"position:") 
-            age = input(f"Age:")
-            goals =input(f"Goals")
-            assists = input(f"Assists:")
-            matches = input(f"Matches:")
-            rating = input(f"Rating:")
+            age = int(input(f"Age:"))
+            goals = int(input(f"Goals"))
+            assists = int(input(f"Assists:"))
+            matches = int(input(f"Matches:"))
+            rating = float(input(f"Rating:"))
             add_player(squad, name, club, position, age, goals, assists, matches, rating)
-        else:
+        elif choice == "4":
+            print (f"1: Forward\n 2: Middfielder\n 3: Defender\n 4: Goalkeeper")
+            position = str(input(f"\nPosition (1-4) :"))
+            position_map = {
+                "1": "Forward",
+                "2": "Midfielder",
+                "3": "Defender",
+                "4": "Goalkeeper"
+            }
+            position = position_map.get(position)
+            for player in squad:
+                if player["position"] == position:
+                    print(f"\n{player['name']}")
+        elif choice == "6":
             print("Exiting. Goodbye!")
             break
+        else:
+            print(f"\nyour input {choice} is not an available option pick again!\n")
                 
+# The actual code
+
 main_menu()
