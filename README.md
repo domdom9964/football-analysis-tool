@@ -9,6 +9,8 @@
  - Spieler hinzufügen
  - Spieler nach position Filtern
  - Ein aktives Main Menu
+ - Spieler löschen
+ - Spieler stats vergleichen
 
 
 ## Technologien
@@ -17,11 +19,10 @@
 
 ## Geplante Erweiterung
 
-- Spieler löschen
 - Spieler bearbeiten
 - Spielerbewertungssystem
 - Information in JSON von Transfermarkt.de bekommen
-- Spieler Stärken/Schwächen evaluierne
+- Spieler Stärken/Schwächen evaluiren
 
 
 ## Versionsverlauf
@@ -30,4 +31,9 @@
 
 - Squad stats abrufen
 - Spieler nach postition Filtern
+
+## ß.2
+
+- Spieler löschen
+- Spieler stats vergleichen
   
