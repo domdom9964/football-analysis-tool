@@ -32,7 +32,7 @@
 - Squad stats abrufen
 - Spieler nach postition Filtern
 
-## ß.2
+## 0.2
 
 - Spieler löschen
 - Spieler stats vergleichen
