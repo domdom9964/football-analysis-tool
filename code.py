@@ -1,3 +1,4 @@
+
 # All perdefined lists in the code
 
 squad = [
@@ -174,12 +175,83 @@ def add_player(squad, name, club, position, age, goals, assists, matches, rating
         "rating": rating,
     }
     squad.append(new_player)      
-    print(f"\n✅ {name} has been added to the squad!\n")
-
-
-
-
+    print(f"\n✅ {name} has been added to the squad!\n")#
     
+def remove_player(squad, name):
+    for player in squad:
+        if player["name"].lower() == name.lower():
+            squad.remove(player)
+            print(f"\n{player['name']} has been succesfully removed from the squad\n")
+            return
+    print(f"no player named {name} is in the squad")
+
+
+def compare_players(squad, name1, name2):
+    """
+    Finds two players by name and prints a side-by-side comparison.
+    """
+    # Search the squad for each player by name (case-insensitive)
+    player1 = None
+    player2 = None
+
+    for player in squad:
+        if player["name"].lower() == name1.lower():
+            player1 = player
+        if player["name"].lower() == name2.lower():
+            player2 = player
+
+    # If either name wasn't found, tell the user and stop
+    if player1 is None:
+        print(f"\n❌ No player named '{name1}' found in the squad.\n")
+        return
+    if player2 is None:
+        print(f"\n❌ No player named '{name2}' found in the squad.\n")
+        return
+
+    # Helper: adds a ✅ next to whichever player wins that stat
+    def winner(val1, val2):
+        if val1 > val2:
+            return "✅", "  "
+        elif val2 > val1:
+            return "  ", "✅"
+        else:
+            return "==", "=="   # draw
+
+    # Calculate extra stats for comparison
+    gpm1 = goals_per_match(player1)   # reusing your existing function
+    gpm2 = goals_per_match(player2)
+    con1 = get_contribution(player1)  # reusing your existing function
+    con2 = get_contribution(player2)
+
+    # Print the comparison table
+    print("\n" + "=" * 55)
+    print(f"  {'CATEGORY':<20} {player1['name']:<15} {player2['name']}")
+    print("=" * 55)
+
+    w1, w2 = winner(player1["goals"], player2["goals"])
+    print(f"  {'Goals':<20} {w1} {player1['goals']:<12} {w2} {player2['goals']}")
+
+    w1, w2 = winner(player1["assists"], player2["assists"])
+    print(f"  {'Assists':<20} {w1} {player1['assists']:<12} {w2} {player2['assists']}")
+
+    w1, w2 = winner(con1, con2)
+    print(f"  {'Contributions':<20} {w1} {con1:<12} {w2} {con2}")
+
+    w1, w2 = winner(player1["matches"], player2["matches"])
+    print(f"  {'Matches':<20} {w1} {player1['matches']:<12} {w2} {player2['matches']}")
+
+    w1, w2 = winner(gpm1, gpm2)
+    print(f"  {'Goals/Match':<20} {w1} {gpm1:<12} {w2} {gpm2}")
+
+    w1, w2 = winner(player1["rating"], player2["rating"])
+    print(f"  {'Rating':<20} {w1} {player1['rating']:<12} {w2} {player2['rating']}")
+
+    print("=" * 55)
+    print(f"  {player1['name']} is rated: {rate_player(player1)}")   # reusing rate_player
+    print(f"  {player2['name']} is rated: {rate_player(player2)}")
+    print("=" * 55 + "\n")
+        
+        
 def main_menu():
     while True:
         print("\nMain Menu:")
@@ -188,9 +260,10 @@ def main_menu():
         print("3. add a new player")
         print("4. view players by position")
         print("5. compare two players")
-        print("6. exit")
+        print("6. delete a player")
+        print("7. exit")
             
-        choice = input("Enter your choice (1-6):")
+        choice = input("Enter your choice (1-7):")
             
         if choice == "1":
             print("\nFULL SQUAD\n")
@@ -223,7 +296,20 @@ def main_menu():
             for player in squad:
                 if player["position"] == position:
                     print(f"\n{player['name']}")
+        elif choice == "5":
+            print("\nCompare Players\n")
+            for player in squad:
+                print(f"  - {player['name']}")   # show squad so user knows available names
+            name1 = input("\nEnter first player name: ")
+            name2 = input("Enter second player name: ")
+            compare_players(squad, name1, name2)
         elif choice == "6":
+            print(f"\n Delete Player\n")
+            for player in squad:
+                print(f" -{player['name']}")
+            name = input("\nPlayer to remove from the squad: ")
+            remove_player(squad, name)
+        elif choice == "7":
             print("Exiting. Goodbye!")
             break
         else:
