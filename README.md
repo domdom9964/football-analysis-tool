@@ -37,3 +37,6 @@
 - Spieler löschen
 - Spieler stats vergleichen
   
+## 0.3
+
+- Squad Liste zu OOP geändert
