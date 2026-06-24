@@ -11,6 +11,8 @@
  - Ein aktives Main Menu
  - Spieler löschen
  - Spieler stats vergleichen
+ - speichern/laden vom squad in JSON
+ - market value als neue information
 
 
 ## Technologien
