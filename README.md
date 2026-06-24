@@ -40,3 +40,9 @@
 ## 0.3
 
 - Squad Liste zu OOP geändert
+
+## 0.4
+
+- speichern/laden vom squad in JSON
+- market value als neue information
+  
