@@ -2,6 +2,8 @@ import json
 import os
 from player import Player
 
+Save_file = "squad.json"
+
 starting_squad = [
     Player("Erling Haaland", "Man City", "Forward", 23, 36, 8, 35, 9.1, 200), 
     Player("Marcus Rashford", "Man United", "Forward", 26, 17, 5, 32, 7.4, 40),
@@ -160,3 +162,4 @@ def change_market_value(squad, player1):
             print(f"\n {player.name} has a new Market Value of {player.market_value}M")
             save_squad(squad)
             return
+        
